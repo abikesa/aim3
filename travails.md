@@ -1,4 +1,4 @@
-# 1
+# 1 Live Server
 
 To improve the update speed and iteration of your web app calculator, you can definitely build and debug it locally using VSCode. Here's a step-by-step guide to get you started:
 
@@ -91,7 +91,7 @@ To improve the update speed and iteration of your web app calculator, you can de
 
 By following these steps, you'll be able to develop and debug your web app more efficiently using VSCode. This setup allows for rapid iteration and immediate feedback, significantly speeding up your development process.
 
-# 2
+# 2 DefinitiveFix
 
 The issue with the "excellent" scenario not displaying a curve might be due to the `scenario` variable not being passed correctly or being used in the `calculateMortalityRisk` function. Here's an adjusted version of the script to ensure that the `scenario` is correctly used for color schemes and data calculation:
 
@@ -142,14 +142,14 @@ function calculateMortalityRisk(scenario) {
 
   const riskResults = timePoints.map((time, index) => `Risk at ${time} years: ${f1[index].toFixed(2)}%`);
 
-  // Clear existing chart before creating a new one
+  // Clear existing chart before creating a new one; this was the definitive fix that made "Excellent" work
   if (window.mortalityChart) {
     window.mortalityChart.destroy();
   }
 
   // Draw graph
   const ctx = document.getElementById('mortality-risk-graph').getContext('2d');
-  window.mortalityChart = new Chart(ctx, {
+  window.mortalityChart = new Chart(ctx, { // window.mortalityChart replaced constat chart & "Excellent" worked, yay!!
     type: 'line',
     data: {
       labels: timePoints.map(String),
